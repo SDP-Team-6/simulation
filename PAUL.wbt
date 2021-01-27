@@ -1,0 +1,117 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  ERP 0.8
+  basicTimeStep 8
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.3389677122687336 -0.8439067360169394 -0.41583928499425876 4.470620848075092
+  position 3.2068587077249564 3.3085469473173945 0.23620433529760196
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+DEF PAUL Robot {
+  translation 0 0.2 0
+  children [
+    DEF Bounding_Box Solid {
+      children [
+        DEF Body_Group Group {
+          children [
+            DEF Wheel_3_Transform Transform {
+              translation -0.13938 0 0.365
+              rotation 0 -1 0 1.0472
+              children [
+                DEF Wheel_1_Mount Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 0.05 0.1 0.05
+                  }
+                }
+              ]
+            }
+            DEF Wheel_2_Transform Transform {
+              translation 0.13938 0 0.365
+              rotation 0 1 0 -2.094395307179586
+              children [
+                DEF Wheel_1_Mount Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 0.05 0.1 0.05
+                  }
+                }
+              ]
+            }
+            DEF Wheel_1_Transform Transform {
+              translation 0 0 0.07
+              children [
+                DEF Wheel_1_Mount Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 0.05 0.1 0.05
+                  }
+                }
+              ]
+            }
+            DEF Backplate_3_transform Transform {
+              translation -0.2 0 0.4
+              rotation 0 -1 0 1.0472
+              children [
+                DEF Backplate_3 Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 0.8 0.1 0.1
+                  }
+                }
+              ]
+            }
+            DEF Backplate_2_transform Transform {
+              translation 0.2 0 0.4
+              rotation 0 1 0 -2.094395307179586
+              children [
+                DEF Backplate_2 Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 0.8 0.1 0.1
+                  }
+                }
+              ]
+            }
+            DEF Backplate_1 Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.8 0.1 0.1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "robot(1)"
+  boundingObject USE Body_Group
+  physics Physics {
+  }
+}
+DEF Pole Solid {
+  translation 0 1 1
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.5 0
+      }
+      geometry Cylinder {
+        radius 0.05
+      }
+    }
+  ]
+}
