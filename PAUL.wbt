@@ -5,24 +5,90 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.3389677122687336 -0.8439067360169394 -0.41583928499425876 4.470620848075092
-  position 3.2068587077249564 3.3085469473173945 0.23620433529760196
+  orientation 0.50336542268722 -0.7177481650612763 -0.4811037547079502 4.536564943931951
+  position 2.2111143711378496 3.8098035179650913 0.09606339430108257
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 Floor {
+  size 4 5
 }
 DEF PAUL Robot {
-  translation 0 0.2 0
+  translation 0.765864 0.41 -0.409223
   children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      device [
+        RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        translation 7.786619999999996e-26 1.3552527156068805e-20 0.12999999999999995
+        rotation 1.47579197724711e-17 4.94486143025655e-18 1 1.5708003061003868
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.05
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics DEF Wheel_Physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      device [
+        RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        translation 0.0999999999999999 -3.5138399999999826e-06 0.2847389999999998
+        rotation -0.6546505699508647 -0.6546587754399333 0.37796100195985155 2.418855957070486
+        children [
+          USE Wheel
+        ]
+        name "solid(2)"
+        boundingObject USE Wheel
+        physics USE Wheel_Physics
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      device [
+        RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.0918648 -4.65959e-06 0.281699
+        rotation -0.4472080700149009 -0.4472200700167797 0.7745961212707783 1.8234699999999993
+        children [
+          USE Wheel
+        ]
+        name "solid(3)"
+        boundingObject USE Wheel
+        physics USE Wheel_Physics
+      }
+    }
     DEF Bounding_Box Solid {
+      translation 0 0 -0.01
       children [
         DEF Body_Group Group {
           children [
             DEF Wheel_3_Transform Transform {
-              translation -0.13938 0 0.365
+              translation -0.15072 0 0.32536
               rotation 0 -1 0 1.0472
               children [
                 DEF Wheel_1_Mount Shape {
@@ -35,7 +101,7 @@ DEF PAUL Robot {
               ]
             }
             DEF Wheel_2_Transform Transform {
-              translation 0.13938 0 0.365
+              translation 0.15938 0 0.33036
               rotation 0 1 0 -2.094395307179586
               children [
                 DEF Wheel_1_Mount Shape {
@@ -60,7 +126,7 @@ DEF PAUL Robot {
               ]
             }
             DEF Backplate_3_transform Transform {
-              translation -0.2 0 0.4
+              translation -0.19134 0 0.395
               rotation 0 -1 0 1.0472
               children [
                 DEF Backplate_3 Shape {
@@ -97,15 +163,16 @@ DEF PAUL Robot {
       ]
     }
   ]
-  name "robot(1)"
+  name "robot(2)"
   boundingObject USE Body_Group
   physics Physics {
   }
 }
 DEF Pole Solid {
-  translation 0 1 1
+  translation 0.457853 1 0.626811
+  scale 1.17147 1.17147 1.17147
   children [
-    Shape {
+    DEF Pole Shape {
       appearance PBRAppearance {
         baseColor 0.8 0.5 0
       }
