@@ -3,10 +3,19 @@ WorldInfo {
   ERP 0.8
   basicTimeStep 8
   coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material1 "polewheel"
+      material2 "polewall"
+      coulombFriction [
+        -1
+      ]
+    }
+  ]
 }
 Viewpoint {
-  orientation 0.5572899334202956 -0.6791292017306658 -0.47771482860077846 4.589391605338137
-  position 1.715487147159288 5.34500933876564 1.2095260444932183
+  orientation 0.9372855635203357 -0.2727830765451922 -0.21699116472083999 5.1498790169815765
+  position 0.3654150629444489 2.7345380185424752 0.9681275851318115
 }
 TexturedBackground {
 }
@@ -18,173 +27,170 @@ Floor {
     type "light strip"
   }
 }
-DEF PAUL Robot {
-  translation 0.498648 2.22866 0.500418
-  rotation -0.09750149712630346 0.9951085232749551 -0.01588977544420951 -0.2627264330917525
+DEF Pole Solid {
+  translation 0 1 0
   children [
-    HingeJoint {
+    DEF Pole Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.2 2.2 0.2
+      }
+    }
+  ]
+  contactMaterial "polewall"
+  boundingObject USE Pole
+}
+DEF PAUL Robot {
+  translation -0.00040885149785538323 0.38288520978669427 0.2483624567861509
+  rotation -0.9999965952005034 0.0012413346891602518 -0.0022953595775060485 -0.11453043245285692
+  children [
+    DEF wheel2 HingeJoint {
       jointParameters HingeJointParameters {
-        position -0.011534861722278578
+        position 276.34755244114626
+        anchor 0 0 -0.4
       }
       device [
         RotationalMotor {
+          name "wheel2"
+          maxVelocity 50
         }
       ]
       endPoint Solid {
-        translation 7.786619999999821e-26 0.0014994987712362838 0.12999135164861783
-        rotation -0.005767280020432846 0.005767302970247369 0.9999667377956206 1.5708335688579207
+        translation 0 0 -0.4
+        rotation -0.05618328833666863 -0.05618443097559845 -0.9968383759805933 1.5739718982726305
         children [
-          DEF Wheel Shape {
+          DEF wheel2 Shape {
             appearance PBRAppearance {
-              baseColor 1 1 0
-              metalness 0
+              metalness 0.1
             }
             geometry Cylinder {
-              height 0.05
+              height 0.1
+              radius 0.05
+            }
+          }
+        ]
+        name "solid(2)"
+        contactMaterial "polewheel"
+        boundingObject USE wheel2
+        physics Physics {
+        }
+        linearVelocity -0.00013330536112624895 0.4995887700954804 -1.0734963082289852e-05
+        angularVelocity 9.99955954966087 0.0026460760550436483 0.0011320392630458174
+      }
+    }
+    DEF wheel1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 492.62681052171814
+        axis -1 0 0
+        anchor 0 0 -0.1
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+          maxVelocity 50
+        }
+      ]
+      endPoint DEF w1 Solid {
+        translation -9.973936960009336e-07 -8.656496094759674e-07 -0.10000050609725157
+        rotation 0.6942688970658787 0.6942738593229913 0.18966946730480314 3.5164795935121678
+        children [
+          DEF wheel1 Shape {
+            appearance PBRAppearance {
+              metalness 0.1
+            }
+            geometry Cylinder {
+              height 0.1
               radius 0.05
             }
           }
         ]
         name "solid(1)"
-        boundingObject USE Wheel
-        physics DEF Wheel_Physics Physics {
+        contactMaterial "polewheel"
+        boundingObject USE wheel1
+        physics Physics {
         }
+        linearVelocity -0.0001226887419632044 0.4997019588018095 1.0676958014927424e-05
+        angularVelocity -10.000368976898732 -0.002473490751442728 -0.0020127349781485226
       }
     }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position -0.0070666374611780824
-      }
-      device [
-        RotationalMotor {
-        }
-      ]
-      endPoint Solid {
-        translation 0.10000000000000059 0.002008616784946904 0.28473191530272707
-        rotation -0.6554103727168137 -0.6527499732568509 0.37994041078620155 2.4234848238569704
-        children [
-          USE Wheel
-        ]
-        name "solid(2)"
-        boundingObject USE Wheel
-        physics USE Wheel_Physics
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position -0.007057208442851071
-      }
-      device [
-        RotationalMotor {
-        }
-      ]
-      endPoint Solid {
-        translation -0.09186479999999884 0.0019833325853571867 0.28169201801713695
-        rotation -0.4493884616258179 -0.44394063461004274 0.7752204354244111 1.826633741635328
-        children [
-          USE Wheel
-        ]
-        name "solid(3)"
-        boundingObject USE Wheel
-        physics USE Wheel_Physics
-      }
-    }
-    DEF Bounding_Box Solid {
-      translation 0 0 -0.01
+    DEF Body_Group Solid {
       children [
-        DEF Body_Group Group {
+        DEF Body Group {
           children [
-            DEF Wheel_3_Transform Transform {
-              translation -0.15072 0 0.32536
-              rotation 0 -1 0 1.0472
+            Transform {
+              translation 0 0 -0.4
+              rotation 0 0 -1 1.5708
               children [
-                DEF Wheel_1_Mount Shape {
+                Shape {
                   appearance PBRAppearance {
                   }
-                  geometry Box {
-                    size 0.05 0.1 0.05
+                  geometry Cylinder {
+                    height 0.5
+                    radius 0.01
                   }
                 }
               ]
             }
-            DEF Wheel_2_Transform Transform {
-              translation 0.15938 0 0.33036
-              rotation 0 1 0 -2.094395307179586
+            Transform {
+              translation 0 0 -0.1
+              rotation 0 0 -1 1.5708
               children [
-                DEF Wheel_1_Mount Shape {
+                Shape {
                   appearance PBRAppearance {
                   }
-                  geometry Box {
-                    size 0.05 0.1 0.05
+                  geometry Cylinder {
+                    height 0.8
+                    radius 0.01
                   }
                 }
               ]
             }
-            DEF Wheel_1_Transform Transform {
-              translation 0 0 0.07
+            Transform {
+              translation 0.224088 0 -0.371863
+              rotation 0 1 0 2.0944
               children [
-                DEF Wheel_1_Mount Shape {
+                Shape {
                   appearance PBRAppearance {
                   }
                   geometry Box {
-                    size 0.05 0.1 0.05
+                    size 1 0.1 0.02
                   }
                 }
               ]
             }
-            DEF Backplate_3_transform Transform {
-              translation -0.19134 0 0.395
-              rotation 0 -1 0 1.0472
+            Transform {
+              translation -0.213206 0 -0.379136
+              rotation 0 -1 0 -1.0472053071795866
               children [
-                DEF Backplate_3 Shape {
+                Shape {
                   appearance PBRAppearance {
                   }
                   geometry Box {
-                    size 0.8 0.1 0.1
+                    size 1 0.1 0.02
                   }
                 }
               ]
             }
-            DEF Backplate_2_transform Transform {
-              translation 0.2 0 0.4
-              rotation 0 1 0 -2.094395307179586
-              children [
-                DEF Backplate_2 Shape {
-                  appearance PBRAppearance {
-                  }
-                  geometry Box {
-                    size 0.8 0.1 0.1
-                  }
-                }
-              ]
-            }
-            DEF Backplate_1 Shape {
+            Shape {
               appearance PBRAppearance {
               }
               geometry Box {
-                size 0.8 0.1 0.1
+                size 1 0.1 0.02
               }
             }
           ]
         }
       ]
+      boundingObject USE Body
+      physics Physics {
+      }
     }
   ]
-  name "robot(2)"
-  boundingObject USE Body_Group
+  boundingObject USE Body
   physics Physics {
   }
-}
-DEF Pole Solid {
-  translation 0.457853 1 0.626811
-  children [
-    DEF Pole Shape {
-      appearance PBRAppearance {
-      }
-      geometry Cylinder {
-        radius 0.05
-      }
-    }
-  ]
-  boundingObject USE Pole
+  controller "pole_climbing_controller"
+  linearVelocity -0.00012792990399769922 0.49964782268326285 -4.121169397624385e-06
+  angularVelocity -0.0004010783007696209 8.593678451717296e-05 -0.00043863778588982465
 }
