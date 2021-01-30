@@ -1,0 +1,212 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  ERP 0.8
+  basicTimeStep 8
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material1 "polewheel"
+      material2 "polewall"
+      coulombFriction [
+        -1
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.26313986439057246 -0.9339535306237261 -0.24184336750051225 4.96145580557809
+  position 2.743764058103079 2.616245833597724 0.9593821371340718
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 4 5
+  appearance Parquetry {
+    type "light strip"
+  }
+}
+DEF Pole Solid {
+  translation 0 1 0
+  children [
+    DEF Pole Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 2.2 0.2
+      }
+    }
+  ]
+  contactMaterial "polewall"
+  boundingObject USE Pole
+}
+DEF PAUL Robot {
+  translation -0.0012563874766205016 1.7647563065614924 0.24839904744737967
+  rotation -0.999962078758021 0.004334730725275536 -0.007553221529714283 -0.11313017283766598
+  children [
+    DistanceSensor {
+      translation 0.0019 -0.05 0
+      rotation 0 0 1 -1.55
+      scale 0.4 0.4 0.4
+      children [
+        DEF Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      name "dis_sensor"
+      boundingObject USE Sensor
+      physics Physics {
+      }
+    }
+    DEF wheel2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 303.9980852075002
+        anchor 0 0 -0.4
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+          maxVelocity 50
+        }
+      ]
+      endPoint Solid {
+        translation -5.235016449653408e-06 -1.4606905789578222e-05 -0.40000723081281475
+        rotation -0.21470772114404468 -0.21470934532912758 -0.9527856482491057 1.6191501656224676
+        children [
+          DEF wheel2 Shape {
+            appearance PBRAppearance {
+              metalness 0.1
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.05
+            }
+          }
+        ]
+        name "solid(2)"
+        contactMaterial "polewheel"
+        boundingObject USE wheel2
+        physics Physics {
+        }
+      }
+    }
+    DEF wheel1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 520.2790247248207
+        axis -1 0 0
+        anchor 0 0 -0.1
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+          maxVelocity 50
+        }
+      ]
+      endPoint DEF w1 Solid {
+        translation 0.010004428383436707 -9.372125834614282e-06 -0.10001277109528756
+        rotation 0.26041939709976347 0.26041944421212454 -0.9297114878769887 1.643619103265122
+        children [
+          DEF wheel1 Shape {
+            appearance PBRAppearance {
+              metalness 0.1
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.05
+            }
+          }
+        ]
+        name "solid(1)"
+        contactMaterial "polewheel"
+        boundingObject USE wheel1
+        physics Physics {
+        }
+      }
+    }
+    DEF Body_Group Solid {
+      children [
+        DEF Body Group {
+          children [
+            Transform {
+              translation 0 0 -0.4
+              rotation 0 0 -1 1.5708
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Cylinder {
+                    height 0.5
+                    radius 0.01
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0 -0.1
+              rotation 0 0 -1 1.5708
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Cylinder {
+                    height 0.8
+                    radius 0.01
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0.224088 0 -0.371863
+              rotation 0 1 0 2.0944
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 1 0.1 0.02
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation -0.213206 0 -0.379136
+              rotation 0 -1 0 -1.0472053071795866
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Box {
+                    size 1 0.1 0.02
+                  }
+                }
+              ]
+            }
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 1 0.1 0.02
+              }
+            }
+          ]
+        }
+      ]
+      boundingObject USE Body
+      physics Physics {
+      }
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "pole_climbing_controller"
+}
