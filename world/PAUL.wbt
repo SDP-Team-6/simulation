@@ -1,7 +1,6 @@
 #VRML_SIM R2021a utf8
 WorldInfo {
   ERP 0.8
-  basicTimeStep 64
   coordinateSystem "NUE"
   contactProperties [
     ContactProperties {
@@ -227,7 +226,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.039 0.1 -0.0225
-        rotation 0.866019052628739 0 -0.5000110003630134 1.5707999999999995
+        rotation 0.8660190526287391 0 -0.5000110003630135 1.5707999999999995
         children [
           USE WHEEL
         ]
@@ -295,5 +294,6 @@ Robot {
   boundingObject USE BODY
   physics Physics {
   }
+  rotationStep 0.1
   controller "PAUL_demo1"
 }
