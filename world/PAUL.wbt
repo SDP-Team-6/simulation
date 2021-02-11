@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.1762046719863184 0.9420108408981609 0.28560022619132125 4.029419073068195
-  position -0.28191841078031865 1.2230621136573767 -0.2926089685968267
+  orientation -0.11262771376281051 0.8348310746287854 0.5388618328724994 2.703919108656185
+  position 0.2216577154688284 1.6907666830019408 -0.36887334181159676
 }
 TexturedBackground {
 }
@@ -68,7 +68,7 @@ Robot {
         DEF BODY Group {
           children [
             DEF MOTOR_DISPLAY_1 Transform {
-              translation -0.0954849 0.121023 -0.0346287
+              translation -0.086827 0.111023 -0.0296244
               rotation -0.44706108459536525 0.44706208459555447 -0.7747721466066607 1.82325
               children [
                 DEF MOTOR_MOCK Shape {
@@ -103,7 +103,7 @@ Robot {
               children [
                 DEF PI_BAY Shape {
                   appearance PBRAppearance {
-                    baseColor 0.156847 0.408667 0.997314
+                    baseColor 0.3 0.7 0.3
                     roughness 1
                     metalness 0
                   }
@@ -119,7 +119,7 @@ Robot {
               children [
                 DEF MOTOR_BAY Shape {
                   appearance PBRAppearance {
-                    baseColor 0.156847 0.408667 0.997314
+                    baseColor 0.8 0.8 0.9
                     roughness 1
                     metalness 0
                   }
@@ -148,7 +148,7 @@ Robot {
               children [
                 DEF SMALL_BODY_SIDE Shape {
                   appearance PBRAppearance {
-                    baseColor 0.156847 0.408667 0.997314
+                    baseColor 0.2 0.2 0.3
                     metalness 0
                   }
                   geometry Box {
@@ -169,7 +169,7 @@ Robot {
               children [
                 DEF BODY_SIDE Shape {
                   appearance PBRAppearance {
-                    baseColor 0.156847 0.408667 0.997314
+                    baseColor 0.2 0.2 0.3
                     roughness 1
                     metalness 0
                   }
@@ -191,7 +191,7 @@ Robot {
               children [
                 DEF TEST Shape {
                   appearance PBRAppearance {
-                    baseColor 0.156847 0.408667 0.997314
+                    baseColor 0.2 0.2 0.3
                     roughness 1
                     metalness 0
                   }
@@ -207,7 +207,7 @@ Robot {
               children [
                 Shape {
                   appearance PBRAppearance {
-                    baseColor 0.156847 0.408667 0.997314
+                    baseColor 0.2 0.2 0.3
                     roughness 1
                     metalness 0
                   }
@@ -222,7 +222,7 @@ Robot {
               children [
                 DEF BODY_CONNECTOR_SHORT Shape {
                   appearance PBRAppearance {
-                    baseColor 1 0.815076 0
+                    baseColor 0.2 0.2 0.3
                     roughness 1
                     metalness 0
                   }
@@ -237,7 +237,7 @@ Robot {
               children [
                 DEF BODY_CONNECTOR_LONG Shape {
                   appearance PBRAppearance {
-                    baseColor 1 0.815076 0
+                    baseColor 0.2 0.2 0.3
                     roughness 1
                     metalness 0
                   }
@@ -281,7 +281,7 @@ Robot {
               children [
                 DEF AXIS Shape {
                   appearance PBRAppearance {
-                    baseColor 0.649729 0 1
+                    baseColor 0.2 0.2 0.3
                     roughness 1
                     metalness 0
                   }
@@ -328,9 +328,18 @@ Robot {
         translation -3.4923078019098415e-08 0.09999820748406951 0.04500136981168317
         rotation -0.2177235775719303 0.21772431935683353 0.9514160838086999 1.620582679854056
         children [
+          DEF WHEEL_CENTRE Shape {
+            appearance PBRAppearance {
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.021
+              radius 0.012
+            }
+          }
           DEF WHEEL Shape {
             appearance PBRAppearance {
-              baseColor 0.612421 1 0.627466
+              baseColor 0 0 0
               roughness 1
               metalness 0
             }
@@ -362,6 +371,7 @@ Robot {
         translation 0.039001278600119635 0.09999883694994749 -0.022500824462313294
         rotation 0.9328078558028468 0.21772627104721878 -0.28716680701008696 1.6205841801999696
         children [
+          USE WHEEL_CENTRE
           USE WHEEL
         ]
         name "wheel_shape2"
@@ -385,6 +395,7 @@ Robot {
         translation -0.03900156136820508 0.09999899318192107 -0.022500960112730728
         rotation -0.7150799630734005 0.2177222397515653 -0.664272288093148 1.6205826199978808
         children [
+          USE WHEEL_CENTRE
           USE WHEEL
         ]
         name "wheel_shape3"
