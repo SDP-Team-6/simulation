@@ -510,5 +510,5 @@ Robot {
   physics Physics {
   }
   rotationStep 0.1
-  controller "PAUL_demo1"
+  controller "PAUL_withLED"
 }
