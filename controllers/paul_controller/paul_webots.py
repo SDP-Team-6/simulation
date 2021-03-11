@@ -44,6 +44,12 @@ class Paul(object):
         # initialise LED
         self.uv_led = self.robot.getDevice('uv_led')
 
+        # In the case that at init both distance sensors were already within a threshold, don't start up
+        self.completed_init = True
+
+        if self.check_top_ds_reading() and self.check_bottom_ds_reading():
+            self.completed_init = False
+
     # Movement Functions
     # Function to start the robot moving at a speed defined in the speed parameter
     def start_motors(self, speed):
@@ -108,6 +114,9 @@ class Paul(object):
 
     def turn_uv_off(self):
         self.uv_led.set(0)
+
+    def wait_for_time(self, time):
+        self.robot.waitForUserInputEvent(self.robot.EVENT_NO_EVENT, time)
 
     # Getters and Setters
     def get_name(self):

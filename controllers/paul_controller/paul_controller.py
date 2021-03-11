@@ -24,6 +24,14 @@ time_step = 0.2
 # Max run time of the robot before termination (in seconds)
 run_time = 20
 
+# Time to pause following a complete cleaning cycle (leave 0 for no pause)
+pause_time = 3000
+
+# number of tours for each cleaning cycle
+# 1 tour up/down the pole = bottom -> top -> bottom
+tours_in_each_cycle = 2
+current_tour = 0
+
 # Used to stop the robot before the time is finished
 running = True
 
@@ -44,14 +52,15 @@ paul.turn_uv_on()
 # WEBOTS GETS ANGRY ABOUT RETURNING BUT UNCLEAR ON HOW TO FIX
 # while running and time() < start_time + run_time:
 
-while paul.robot.step(paul.timestep) != -1:
+while paul.robot.step(paul.timestep) != -1 and paul.completed_init:
+
     try:
         # If the display option is enabled display all readings as defined in the API
         if display:
             paul.display_all_readings()
 
         # If the robot is moving up the pole
-        if going_up:
+        elif going_up:
             # Check that the robot has gone past the distance sensor stopping threshold
             if paul.check_top_ds_reading():
                 # If the robot has reached the ceiling the move the robot down
@@ -62,10 +71,19 @@ while paul.robot.step(paul.timestep) != -1:
         # If the robot is moving down the pole
         elif not going_up:
             if paul.check_bottom_ds_reading():
+                current_tour = current_tour + 1
                 # If the robot has reached the floor then move the robot back up
                 going_up = True
                 paul.stop_motors()
+
+                if current_tour == tours_in_each_cycle:
+                    # pause a specified time between clean cycles
+                    paul.wait_for_time(pause_time)
+                    # clear count
+                    current_tour = 0
+
                 paul.start_motors(paul.get_up_speed())
+
         else:
             # If there the robot is not moving up or down then there is an issue and the code should be
             # terminated
@@ -87,9 +105,8 @@ while paul.robot.step(paul.timestep) != -1:
         # Stop and restart the motors if an error occurs
         paul.stop_motors()
         paul.turn_uv_off()
-        print("Error")
+        print(e)
         paul.display_all_readings()
 
         # I've just put 5 here for now, getting the speed won't work because it has just been stopped
         # TODO: Figure out we want to do here
-        paul.start_motors(5)
