@@ -1,0 +1,531 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  ERP 0.8
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material1 "wheel"
+      material2 "pole"
+      coulombFriction [
+        -1
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.3756786240162024 0.8784288592461639 0.29534439337962 1.2728535241336665
+  position 3.5258248313280025 3.676904463515191 1.559909780145742
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 3 3
+}
+Solid {
+  translation 0 1 0
+  children [
+    DEF POLE Group {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.652857 0.64683 0.657359
+            metalness 0
+          }
+          geometry Cylinder {
+            radius 0.03
+          }
+        }
+        Transform {
+          translation 0 1 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.710491 0.703914 0.715419
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.5 0.001 0.5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "pole"
+  contactMaterial "pole"
+  boundingObject USE POLE
+}
+Robot {
+  translation 0.000924758353314673 1.6952888910310573 0.001100174156348467
+  rotation -0.9048855500367515 0.19903670892634492 0.3762532788354877 0.015731323151627407
+  children [
+    Solid {
+      children [
+        DEF BODY Group {
+          children [
+            DEF MOTOR_DISPLAY_1 Transform {
+              translation -0.086827 0.111023 -0.0296244
+              rotation -0.44706108459536525 0.44706208459555447 -0.7747721466066607 1.82325
+              children [
+                DEF MOTOR_MOCK Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0.7 0
+                    metalness 0
+                  }
+                  geometry Cylinder {
+                    height 0.02
+                    radius 0.008
+                  }
+                }
+              ]
+            }
+            DEF MOTOR_DISPLAY_2 Transform {
+              translation 0.067929 0.11 -0.0623199
+              rotation -0.4470590447982244 -0.4470590447982244 0.7747750776375028 1.82325
+              children [
+                USE MOTOR_MOCK
+              ]
+            }
+            DEF MOTOR_DISPLAY_3 Transform {
+              translation 0.02 0.11 0.09
+              rotation 0 0 1 -1.5707953071795862
+              children [
+                USE MOTOR_MOCK
+              ]
+            }
+            DEF PI_BOARD_BAY Transform {
+              translation -0.0565695 0.1 -0.101955
+              rotation 0 1 0 1.0467
+              children [
+                DEF PI_BAY Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.3 0.7 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.0856 0.011 0.026
+                  }
+                }
+              ]
+            }
+            DEF MOTOR_BAY_1 Transform {
+              translation 0.0529161 0.1 -0.0882933
+              rotation 0 1 0 -1.0467
+              children [
+                DEF MOTOR_BAY Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.8 0.8 0.9
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.105 0.011 0.034
+                  }
+                }
+              ]
+            }
+            DEF MOTOR_BAY_2 Transform {
+              translation 0.05 0.1 0.09
+              children [
+                USE MOTOR_BAY
+              ]
+            }
+            DEF MOTOR_BAY_3 Transform {
+              translation -0.102959 0.1 -0.00171543
+              rotation 0 1 0 1.0467
+              children [
+                USE MOTOR_BAY
+              ]
+            }
+            DEF SMALL_JOINT_3 Transform {
+              translation -0.12985 0.1 0.0750989
+              rotation 0 1 0 -1.0467
+              children [
+                DEF SMALL_BODY_SIDE Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.1 0.03 0.01
+                  }
+                }
+              ]
+            }
+            DEF SMALL_JOINT_2 Transform {
+              translation 0.12985 0.1 0.075099
+              rotation 0 1 0 1.0467
+              children [
+                USE SMALL_BODY_SIDE
+              ]
+            }
+            DEF BACK_PLATE_1 Transform {
+              translation 0 0.1 0.11
+              children [
+                DEF BODY_SIDE Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.221 0.03 0.01
+                  }
+                }
+              ]
+            }
+            DEF SMALL_JOINT_1 Transform {
+              translation 0 0.1 -0.15
+              children [
+                USE SMALL_BODY_SIDE
+              ]
+            }
+            DEF BACK_PLATE_2 Transform {
+              translation -0.0952532 0.1 -0.0550129
+              rotation 0 1 0 1.0467
+              children [
+                DEF TEST Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.221 0.03 0.01
+                  }
+                }
+              ]
+            }
+            DEF BACK_PLATE_3 Transform {
+              translation 0.0952532 0.1 -0.0550129
+              rotation 0 1 0 -1.0467
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.221 0.03 0.01
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0.0175 0.1 0.055
+              children [
+                DEF BODY_CONNECTOR_SHORT Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.005 0.01 0.04
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation -0.0175 0.1 0.075
+              children [
+                DEF BODY_CONNECTOR_LONG Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.005 0.01 0.079
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation -0.0562046 0.1 -0.052653
+              rotation 0 1 0 1.0476
+              children [
+                USE BODY_CONNECTOR_LONG
+              ]
+            }
+            Transform {
+              translation -0.0564 0.1 -0.0123
+              rotation 0 1 0 1.0476
+              children [
+                USE BODY_CONNECTOR_SHORT
+              ]
+            }
+            Transform {
+              translation 0.03888 0.1 -0.04266
+              rotation 0 1 0 -1.0467
+              children [
+                USE BODY_CONNECTOR_SHORT
+              ]
+            }
+            Transform {
+              translation 0.0737156 0.1 -0.0223086
+              rotation 0 1 0 -1.0467
+              children [
+                USE BODY_CONNECTOR_LONG
+              ]
+            }
+            Transform {
+              translation 0 0.1 0.045
+              rotation 0 0 1 1.5708
+              children [
+                DEF AXIS Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.2 0.2 0.3
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Cylinder {
+                    height 0.039
+                    radius 0.003
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation -0.03897 0.1 -0.0225
+              rotation -0.866019052628739 0 -0.5000110003630134 1.5707999999999998
+              children [
+                USE AXIS
+              ]
+            }
+            Transform {
+              translation 0.03897 0.1 -0.0225
+              rotation 0.8660190526287391 0 -0.5000110003630134 1.5708
+              children [
+                USE AXIS
+              ]
+            }
+          ]
+        }
+        Group {
+          children [
+            SolidPipe {
+              translation 0 0.13 0
+              name "UV module"
+              height 0.02
+              radius 0.05
+              thickness 0.005
+              appearance PBRAppearance {
+                roughness 1
+                metalness 0
+              }
+              physics Physics {
+              }
+            }
+            Solid {
+              translation 0.088 0.12 0.05
+              rotation 0.7255771900217981 -0.5459391429762939 -0.4189131097093782 -1.6267153071795866
+              children [
+                DEF UV_CONNECTOR Shape {
+                  appearance PBRAppearance {
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Cylinder {
+                    height 0.11
+                    radius 0.004
+                  }
+                }
+              ]
+            }
+            Transform {
+              translation 0 0.12 -0.099
+              rotation 1 0 0 1.309
+              children [
+                USE UV_CONNECTOR
+              ]
+            }
+            Transform {
+              translation -0.087 0.12 0.05
+              rotation 0.7255801029453123 0.5459360774574161 0.41891205943524723 -1.626705307179586
+              children [
+                USE UV_CONNECTOR
+              ]
+            }
+          ]
+        }
+      ]
+      boundingObject USE BODY
+      physics Physics {
+      }
+    }
+    LED {
+      translation 0 0.13 0
+      children [
+        SolidPipe {
+          name "leds"
+          height 0.01
+          radius 0.045
+          thickness 0.003
+          appearance PBRAppearance {
+            baseColor 0.7 0.7 0.7
+            roughness 0.3
+            metalness 0
+            emissiveColor 0.5 0 1
+            emissiveIntensity 6
+          }
+        }
+      ]
+      name "uv_led"
+      color [
+        0.5 0 1
+      ]
+      gradual TRUE
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 102.23987835952553
+        axis -1 0 0
+        anchor 0 0.1 0.045
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation -3.492307801909842e-08 0.10000049079545985 0.045002201957589284
+        rotation 0.580541108380492 -0.5805429736444847 -0.5709131958821488 4.179105013698095
+        children [
+          DEF WHEEL_CENTRE Shape {
+            appearance PBRAppearance {
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.021
+              radius 0.012
+            }
+          }
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.016
+            }
+          }
+        ]
+        name "wheel_shape1"
+        contactMaterial "wheel"
+        boundingObject USE WHEEL
+        physics DEF WHEEL_PH Physics {
+        }
+        linearVelocity -0.0004461670593834707 0.07747252831953551 -0.001090514307399298
+        angularVelocity -4.982222933051237 -0.027344491189774865 0.0365811663258445
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 102.2398171834201
+        axis 0.5 0 0.866
+        anchor 0.039 0.1 -0.0225
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.03900142929813472 0.10000089082565031 -0.02250091147040515
+        rotation -0.784711894205017 -0.5805333354539286 -0.21727468679050177 4.17913983729438
+        children [
+          USE WHEEL_CENTRE
+          USE WHEEL
+        ]
+        name "wheel_shape2"
+        contactMaterial "wheel"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+        linearVelocity -0.00046571696711012524 0.07945757586569724 -0.0011279282578004616
+        angularVelocity 2.5310434155970216 0.07754547936153083 4.34210511419949
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 102.239758829469
+        axis 0.5 0 -0.866
+        anchor -0.039 0.1 -0.0225
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.039001432216045955 0.1000012401362389 -0.022500885544509516
+        rotation 0.2041954276968555 -0.5805192822766809 0.7882268646859645 4.179172151721106
+        children [
+          USE WHEEL_CENTRE
+          USE WHEEL
+        ]
+        name "wheel_shape3"
+        contactMaterial "wheel"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+        linearVelocity -0.0004476150977005672 0.0778615862386364 -0.0010930208498591085
+        angularVelocity 2.5046161091961547 -0.04868893001770028 -4.316947891113942
+      }
+    }
+    DistanceSensor {
+      translation 0 0.115 0.11
+      rotation 0 0 1 1.5708
+      children [
+        DEF D_SENSOR Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.01 0.005
+          }
+        }
+      ]
+      name "ds_top"
+      boundingObject USE D_SENSOR
+      physics Physics {
+      }
+      rotationStep 0.4
+      numberOfRays 4
+      aperture 2
+      gaussianWidth 7
+    }
+    DistanceSensor {
+      translation 0 0.085 0.105
+      rotation 0 0 1 -1.5708
+      children [
+        USE D_SENSOR
+      ]
+      name "ds_bottom"
+      boundingObject USE D_SENSOR
+      physics Physics {
+      }
+      rotationStep 0.4
+      numberOfRays 4
+      aperture 2
+      gaussianWidth 7
+    }
+  ]
+  name "PAUL"
+  boundingObject USE BODY
+  physics Physics {
+  }
+  rotationStep 0.1
+  controller "PAUL_withLED"
+  linearVelocity -0.0004779419897584504 0.07828563362320068 -0.0010845528199027274
+  angularVelocity 0.01767331490969224 0.0004992345471526655 0.020412234905441157
+}
