@@ -60,7 +60,7 @@ while paul.robot.step(paul.timestep) != -1 and paul.completed_init:
             paul.display_all_readings()
 
         # If the robot is moving up the pole
-        elif going_up:
+        if going_up:
             # Check that the robot has gone past the distance sensor stopping threshold
             if paul.check_top_ds_reading():
                 # If the robot has reached the ceiling the move the robot down
